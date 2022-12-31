@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
         cb(null, "uploads");
     },
     filename: (req, file, cb) => {
-        cb(null, file.fieldname + "-" + Date.now());
+        cb(null, file.fieldname + "-" + Date.now().toString() + ".jpg");
     },
 });
 
@@ -60,7 +60,9 @@ app.post("/blogs", upload.single("image"), (req, res) => {
         title: req.body.title,
         blog: req.body.blog,
         img: {
-            data: req.file.fieldname,
+            data: fs.readFileSync(
+                path.join(__dirname + "/uploads/" + req.file.filename)
+            ),
             contentType: "image/png",
         },
     });

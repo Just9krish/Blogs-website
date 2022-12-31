@@ -6,7 +6,11 @@
         <div class="blog-container container">
             <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
             <div class="blog-card">
-                <img src="blog-image.jpg" alt="Blog image" />
+                <img
+                    src="data:blog/<%=blog.img.contentType%>;base64,
+                     <%=blog.img.data.toString('base64')%>"
+                    alt="blog image"
+                />
                 <div class="content">
                     <div class="title"><%= blog.title %></div>
                     <div class="snippet"><%= getSnippet(blog.blog) %></div>
