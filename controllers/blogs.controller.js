@@ -15,11 +15,7 @@ const blog_create_get = (req, res) => {
 
 // post blog
 const blog_create_post = (req, res) => {
-  console.log(req.body.title);
-  const blog = new Blog({
-    title: req.body.title,
-    blog: req.body.blog,
-  });
+  const blog = new Blog(req.body);
 
   blog
     .save()
