@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const methodOverriden = require("method-override");
 const blogRouter = require("./routes/blogs.routes");
 
 const app = express();

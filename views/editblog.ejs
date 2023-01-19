@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <%-include("./partials/head.ejs") %>
+  <body>
+    <%-include("./partials/navbar.ejs") %>
+    <h1>Edit blog</h1>
+    <form action="/blogs/<%= blog.id %>?_method=PUT" method="POST">
+      <%-include("./partials/formField.ejs") %>
+    </form>
+    <%-include("./partials/footer.ejs") %>
+  </body>
+</html>

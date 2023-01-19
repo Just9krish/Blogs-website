@@ -291,6 +291,8 @@ h1 {
   flex-direction: column;
   align-items: center;
   flex: 1;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .blog__section h1 {
@@ -351,6 +353,18 @@ form .error {
   color: red;
   font-size: 0.8em;
   margin-top: 0.5em;
+}
+
+form .cancel {
+  text-decoration: none;
+  color: white;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 2rem;
+  background-color: #555;
+  margin-right: 0.7rem;
 }
 
 /* footer */

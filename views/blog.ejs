@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <%-include("./partials/head.ejs") %>
+  <body>
+    <%-include("./partials/navbar.ejs") %>
+    <h1><%= blog.title %></h1>
+    <div>
+      <a href="/blogs">All Blogs</a>
+      <a href="/blogs/edit/<%= blog.id %>">Edit</a>
+    </div>
+    <div><%- blog.sanitizedHtml %></div>
+    <%-include("./partials/footer.ejs") %>
+  </body>
+</html>

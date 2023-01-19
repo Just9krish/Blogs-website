@@ -9,16 +9,17 @@
       <div class="blog-card">
         <div class="content">
           <div class="title"><%= blog.title %></div>
-          <div class="snippet"><%= getSnippet(blog.blog) %></div>
-          <a href="#" class="read-more">Read More</a>
+          <div class="snippet"><%= blog.snippet %></div>
+          <a href="/blogs/<%= blog.slug %>" class="read-more">Read More</a>
+          <form action="/blogs/<%= blog.id%>?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+          </form>
         </div>
       </div>
       <% }) %> <% } else { %>
       <p>There is no blog to display</p>
       <% } %>
     </div>
-    <%-include("./partials/footer.ejs") %> <% function getSnippet(str) { const
-    words = str.split(" "); if (words.length <= 30) { return words.join(" "); }
-    else { return `${words.slice(0, 30).join(" ")}....`; } } %>
+    <%-include("./partials/footer.ejs") %>
   </body>
 </html>

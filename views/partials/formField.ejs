@@ -1,0 +1,23 @@
+<label for="title">Title</label>
+<input value="<%= blog.title %>" type="text" name="title" id="title" required />
+
+<label for="snippet">Snippet</label>
+<textarea
+  type="text"
+  value="<%= blog.snippet %>"
+  name="snippet"
+  id="snippet"
+  required
+></textarea>
+
+<label for="markdown">Markdonwn</label>
+<textarea
+  type="text"
+  value="<%= blog.markdown %>"
+  name="markdown"
+  id="markdown"
+  required
+></textarea>
+
+<a class="cancel" href="/" class="btn btn-secondry">Cancel</a>
+<button class="btn btn-primary" type="submit">Published</button>
