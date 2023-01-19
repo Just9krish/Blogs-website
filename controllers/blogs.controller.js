@@ -13,17 +13,33 @@ const blog_create_get = (req, res) => {
   res.render("createblog", { title: "Create Blog", blog: new Blog() });
 };
 
-// post blog
-const blog_create_post = async (req, res) => {
-  let blog = new Blog(req.body);
+// post blog or save the article
+const createAndUpdateBlog = async (req, res) => {
+  let blog = req.blog;
+
+  blog.title = req.body.title;
+  blog.snippet = req.body.snippet;
+  blog.markdown = req.body.markdown;
 
   try {
     blog = await blog.save();
     res.redirect("/blogs");
   } catch (error) {
-    console.log(error);
     res.render("createblog", { title: "Create Blog", blog: blog });
   }
+};
+
+// create a blog
+const blog_create_post = async (req, res, next) => {
+  req.blog = new Blog();
+  next();
+};
+
+// update a blog
+const blog_update_post = async (req, res, next) => {
+  const id = req.params.id;
+  req.blog = await Blog.findById(id);
+  next();
 };
 
 // single blog
@@ -40,9 +56,10 @@ const blog_details = async (req, res) => {
 
 // delete blog
 const blog_delete = async (req, res) => {
-  const id = req.body.id;
+  const id = req.params.id;
 
   const blog = await Blog.findByIdAndDelete(id);
+  console.log(blog);
   res.redirect("/blogs");
 };
 
@@ -63,4 +80,6 @@ module.exports = {
   blog_details,
   blog_delete,
   blog_edit,
+  blog_update_post,
+  createAndUpdateBlog,
 };

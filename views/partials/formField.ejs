@@ -1,23 +1,62 @@
-<label for="title">Title</label>
-<input value="<%= blog.title %>" type="text" name="title" id="title" required />
+<div class="mb-6">
+  <label
+    for="title"
+    class="mb-2 block text-sm font-medium text-[#181826] md:text-lg lg:text-xl"
+    >Title :</label
+  >
+  <input
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    value="<%= blog.title %>"
+    type="text"
+    name="title"
+    id="title"
+    required
+  />
+</div>
+<div class="mb-6">
+  <label
+    class="mb-2 block text-sm font-medium text-[#181826] md:text-lg lg:text-xl"
+    for="snippet"
+    >Snippet :</label
+  >
+  <textarea
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    name="snippet"
+    id="snippet"
+    rows="5"
+    required
+  >
+    <%= blog.snippet %></textarea
+  >
+</div>
 
-<label for="snippet">Snippet</label>
-<textarea
-  type="text"
-  value="<%= blog.snippet %>"
-  name="snippet"
-  id="snippet"
-  required
-></textarea>
+<div class="mb-6">
+  <label
+    class="mb-2 block text-sm font-medium text-[#181826] md:text-lg lg:text-xl"
+    for="markdown"
+    >Markdonwn :</label
+  >
+  <textarea
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    type="text"
+    name="markdown"
+    id="markdown"
+    rows="30"
+    required
+  >
+    <%= blog.markdown %>"</textarea
+  >
+</div>
 
-<label for="markdown">Markdonwn</label>
-<textarea
-  type="text"
-  value="<%= blog.markdown %>"
-  name="markdown"
-  id="markdown"
-  required
-></textarea>
-
-<a class="cancel" href="/" class="btn btn-secondry">Cancel</a>
-<button class="btn btn-primary" type="submit">Published</button>
+<a
+  class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 mr-2 md:text-md lg:text-lg lg:mr-4"
+  href="/"
+  class="btn btn-secondry"
+  >Cancel</a
+>
+<button
+  class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 md:text-md lg:text-lg"
+  type="submit"
+>
+  Published
+</button>

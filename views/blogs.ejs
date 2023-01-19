@@ -3,23 +3,32 @@
   <%-include("./partials/head.ejs") %>
   <body>
     <%-include("./partials/navbar.ejs") %>
-    <h2 class="blog-title">All Blogs</h2>
-    <div class="blog-container container">
-      <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
-      <div class="blog-card">
-        <div class="content">
-          <div class="title"><%= blog.title %></div>
-          <div class="snippet"><%= blog.snippet %></div>
-          <a href="/blogs/<%= blog.slug %>" class="read-more">Read More</a>
-          <form action="/blogs/<%= blog.id%>?_method=DELETE" method="POST">
-            <button type="submit">Delete</button>
-          </form>
+    <section class="px-4 py-8 lg:py-16">
+      <h2 class="text-lg md:text-xl lg:text-4xl font-bold text-center">
+        All Blogs
+      </h2>
+      <div class="space-y-4 px-2 py-7 max-w-[800px] mx-auto">
+        <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+        <div class="border border-gray-300 shadow-md p-6 rounded-md">
+          <div class="content">
+            <h3 class="font-bold mb-2.5 text-base md:text-lg lg:text-2xl">
+              <%= blog.title %>
+            </h3>
+            <span><%= blog.createdAt.toLocaleDateString() %></span>
+            <p class="font-light text-sm md:text-base lg:text-md">
+              <%= blog.snippet %>
+            </p>
+            <a href="/blogs/<%= blog.slug %>" class="read-more">Read More</a>
+            <form action="/blogs/<%= blog.id%>?_method=DELETE" method="POST">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
         </div>
+        <% }) %> <% } else { %>
+        <p>There is no blog to display</p>
+        <% } %>
       </div>
-      <% }) %> <% } else { %>
-      <p>There is no blog to display</p>
-      <% } %>
-    </div>
+    </section>
     <%-include("./partials/footer.ejs") %>
   </body>
 </html>

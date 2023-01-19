@@ -5,8 +5,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const methodOverriden = require("method-override");
 const blogRouter = require("./routes/blogs.routes");
+const Blog = require("./models/blog.model");
 
 const app = express();
+
+// telling app to use method override to delete blog wihtout heking of code in front end
+app.use(methodOverriden("_method"));
 
 // database url
 const dbUrl = process.env.MONGODBURL;
@@ -30,8 +34,9 @@ mongoose
 app.use(express.static("public"));
 
 // rendering the home page
-app.get("/", (req, res) => {
-  res.render("home.ejs", { title: "Home" });
+app.get("/", async (req, res) => {
+  let blogs = await Blog.find().sort({ createdAt: -1 });
+  res.render("home.ejs", { title: "Home", blogs: blogs.slice(0, 10) });
 });
 
 app.use("/blogs", blogRouter);

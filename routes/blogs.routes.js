@@ -6,6 +6,15 @@ router.get("/create", blogController.blog_create_get);
 router.get("/edit/:id", blogController.blog_edit);
 router.get("/:slug", blogController.blog_details);
 router.delete("/:id", blogController.blog_delete);
-router.post("/", blogController.blog_create_post);
+router.post(
+  "/",
+  blogController.blog_create_post,
+  blogController.createAndUpdateBlog
+);
+router.put(
+  "/:id",
+  blogController.blog_update_post,
+  blogController.createAndUpdateBlog
+);
 
 module.exports = router;
