@@ -30,21 +30,32 @@
       </div>
     </section>
 
-    <section class="mr-auto px-4 py-8 mx-auto grid lg:py-16">
-      <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
-      <div class="blog">
-        <div class="blog__discription">
-          <h3 class="blog__title"><%= blog.title %></h3>
-          <p class="blog__snippet"><%= blog.snippet %></p>
+    <section class="lg:px-12">
+      <div class="px-4 py-8 mx-auto lg:py-16 xl:max-w-[1440px]">
+        <% if (blogs.length > 0) { %>
+        <div
+          class="grid gap-4 grid-cols-1 lg:gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <% blogs.forEach(blog => { %>
+          <div
+            class="border border-[#13E4E4] rounded-lg shadow-md hover:shadow-lg hover:scale-[1.012] p-4 transition-all transition-200"
+          >
+            <div class="mb-4">
+              <h3 class="font-bold text-lg md:text-xl lg:text-3xl">
+                <%= blog.title %>
+              </h3>
+              <span class="text-gray-500"
+                ><%= blog.createdAt.toLocaleDateString() %></span
+              >
+            </div>
+            <p class="font-light"><%= blog.snippet %></p>
+          </div>
+          <% }) %>
         </div>
-        <div class="blog__image">
-          <img src="/img/hero.jpg" alt="" />
-        </div>
+        <% } else { %>
+        <p>Sorry, we don't have any blog to display right now.</p>
+        <% } %>
       </div>
-
-      <% }) %> <% } else { %>
-      <p>Sorry, we don't have any blog to display right now.</p>
-      <% } %>
     </section>
 
     <%-include("./partials/footer.ejs") %>

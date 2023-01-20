@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <%-include("./partials/head.ejs") %>
-  <body>
+  <body class="min-h-screen">
     <%-include("./partials/navbar.ejs") %>
     <h1>Edit blog</h1>
     <form action="/blogs/<%= blog.id %>?_method=PUT" method="POST">
