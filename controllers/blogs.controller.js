@@ -1,4 +1,5 @@
 const Blog = require("../models/blog.model");
+const Path = require("path");
 
 const blog_index = (req, res) => {
   Blog.find()
@@ -15,11 +16,14 @@ const blog_create_get = (req, res) => {
 
 // post blog or save the article
 const createAndUpdateBlog = async (req, res) => {
+  const path = req.file.path.replace(/^public\\/, "");
+
   let blog = req.blog;
 
   blog.title = req.body.title;
   blog.snippet = req.body.snippet;
   blog.markdown = req.body.markdown;
+  blog.cover = `http:\\\\${Path.normalize(`${req.hostname}:3000\\${path}`)}`;
 
   try {
     blog = await blog.save();
@@ -50,7 +54,7 @@ const blog_details = async (req, res) => {
     const blog = await Blog.findOne({ slug: slug }); // find return array so use findOne
     res.render("blog", { blog: blog, title: "Blog Details" });
   } catch (error) {
-    console.log(error);
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -59,7 +63,6 @@ const blog_delete = async (req, res) => {
   const id = req.params.id;
 
   const blog = await Blog.findByIdAndDelete(id);
-  console.log(blog);
   res.redirect("/blogs");
 };
 
@@ -67,9 +70,7 @@ const blog_delete = async (req, res) => {
 const blog_edit = async (req, res) => {
   const id = req.params.id;
 
-  console.log(id);
   const blog = await Blog.findById(id);
-  console.log(blog);
   res.render("editblog", { blog: blog, title: "Edit blog" });
 };
 

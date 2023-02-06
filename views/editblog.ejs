@@ -5,7 +5,11 @@
     <%-include("./partials/navbar.ejs") %>
     <section class="px-4 py-8 lg:py-16 flex-1">
       <h1>Edit blog</h1>
-      <form action="/blogs/<%= blog.id %>?_method=PUT" method="POST">
+      <form
+        action="/blogs/<%= blog.id %>?_method=PUT"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <%-include("./partials/formField.ejs") %>
       </form>
     </section>
