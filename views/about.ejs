@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html>
   <%-include("./partials/head.ejs") %>
-  <body class="min-h-screen">
+  <body class="min-h-screen flex flex-col">
     <%-include("./partials/navbar.ejs") %>
 
-    <section class="">
-      <h1>About Me</h1>
-      <img src="/img/profile pic.jpg" alt="Profile picture" />
-      <p>
-        Hi there! My name is Amit and I am a blogger and content creator. I am
-        passionate about sharing my experiences and insights with the world, and
-        connecting with like-minded people. On my blog, you will find a mix of
-        personal stories, useful tips, and interesting insights related to Web
-        Developement. I hope you enjoy reading my content as much as I enjoy
-        creating it!
-      </p>
-      <div class="social-links">
-        <a href="#" class="social-link">
-          <img src="" alt="Instagram icon" />
-        </a>
-        <a href="#" class="social-link">
-          <img src="twitter-icon.png" alt="Twitter icon" />
-        </a>
-        <a href="#" class="social-link">
-          <img src="facebook-icon.png" alt="Facebook icon" />
-        </a>
+    <section class="px-4 py-8 lg:py-16 flex-1">
+      <div class="text-center mx-auto max-w-3xl">
+        <div class="flex flex-col items-center space-y-6">
+          <h1 class="text-lg md:text-xl lg:text-4xl font-bold text-center">
+            About Me
+          </h1>
+          <div
+            class="rounded-full h-56 w-56 mx-auto border-2 border-gray-300 overflow-hidden"
+          >
+            <img class="" src="/img/profile pic.jpg" alt="Profile picture" />
+          </div>
+          <p class="">
+            Hi there! My name is Amit and I am a blogger and content creator. I
+            am passionate about sharing my experiences and insights with the
+            world, and connecting with like-minded people. On my blog, you will
+            find a mix of personal stories, useful tips, and interesting
+            insights related to Web Developement. I hope you enjoy reading my
+            content as much as I enjoy creating it!
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="social-link">
+              <i
+                class="fab fa-instagram text-3xl hover:text-[#13E4E4] transition-all"
+              ></i>
+            </a>
+            <a href="#" class="social-link">
+              <i
+                class="fab fa-twitter text-3xl hover:text-[#13E4E4] transition-all"
+              ></i>
+            </a>
+            <a href="#" class="social-link">
+              <i
+                class="fab fa-github text-3xl hover:text-[#13E4E4] transition-all"
+              ></i>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
     <%-include("./partials/footer.ejs") %>
