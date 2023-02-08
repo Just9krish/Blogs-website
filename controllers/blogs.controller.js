@@ -21,7 +21,6 @@ const createAndUpdateBlog = async (req, res) => {
   let blog = req.blog;
 
   blog.title = req.body.title;
-  blog.snippet = req.body.snippet;
   blog.markdown = req.body.markdown;
   blog.cover = `http:\\\\${Path.normalize(`${req.hostname}:3000\\${path}`)}`;
 

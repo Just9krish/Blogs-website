@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <%-include("./partials/head.ejs") %>
+
   <body class="min-h-screen flex flex-col">
     <%-include("./partials/navbar.ejs") %>
 
@@ -13,7 +14,7 @@
             class="max-w-2xl mb-4 text-4xl font-extrabold md:text-5xl xl:text-6xl"
           >
             Unlocking the
-            <span class="text-[#13E4E4]">Secrets</span>
+            <span class="text-[#007DFE]">Secrets</span>
             of Web Development
           </h1>
           <p class="max-w-2xl mb-6 font-light md:text-lg lg:text-xl">
@@ -30,28 +31,40 @@
       </div>
     </section>
 
-    <section class="lg:px-12">
-      <div class="px-4 py-8 mx-auto lg:py-16 xl:max-w-[1440px]">
-        <% if (blogs.length > 0) { %>
-        <h1>Latest blog postings</h1>
-        <div
-          class="grid gap-4 grid-cols-1 lg:gap-8 md:grid-cols-2 lg:grid-cols-3"
-        >
-          <% blogs.forEach(blog => { %>
-          <div
-            class="border border-[#13E4E4] rounded-lg shadow-md hover:shadow-lg hover:scale-[1.012] p-4 transition-all transition-200"
-          >
-            <div class="mb-4">
-              <h3 class="font-bold text-lg md:text-xl lg:text-3xl">
-                <%= blog.title %>
-              </h3>
-              <span class="text-gray-500"
-                ><%= blog.createdAt.toLocaleDateString() %></span
-              >
+    <section class="lg:px-32">
+      <div class="px-4 py-8 lg:py-16 xl:max-w-[1440px]">
+        <% if (blogs.length> 0) { %>
+        <h1 class="font-bold text-4xl">Recent Post</h1>
+        <div class="py-7">
+          <div class="grid md:grid-cols-2 gap-6 md:gap-10">
+            <% if (blogs.length> 0) { %> <% blogs.slice(0,6).forEach( blog => { %>
+            <div
+              class="border-2 border-[#007DFE] shadow-lg hover:shadow-xl p-6 rounded-md max-w-xl ease-in-out duration-300"
+            >
+              <div class="mb-2">
+                <a
+                  href="/blogs/<%= blog.slug %>"
+                  class="text-[#007DFE] font-bold px-1 underline ease-in-out duration-300 cursor-pointer rounded-[5px] text-xl inline-block hover:no-underline hover:bg-blue-300"
+                >
+                  <%= blog.title %>
+                </a>
+                <span class="text-gray-500 block">
+                  <i class="far fa-calendar text-md mr-1"> </i>
+                  <%= blog.createdAt.toLocaleDateString() %>
+                </span>
+              </div>
+              <p class="text-sm md:text-base" id="snippet">
+                <%= blog.markdown.split(" ").slice(0, 25).join(" ") %> ....<a
+                  href=" /blogs/<%=blog.slug %>"
+                  class="text-red-700 cursor-pointer hover:text-red-500"
+                  >continue reading</a
+                >
+              </p>
             </div>
-            <p class="font-light"><%= blog.snippet %></p>
+            <% }) %> <% } else { %>
           </div>
-          <% }) %>
+          <p>There is no blog to display</p>
+          <% } %>
         </div>
         <% } else { %>
         <p>Sorry, we don't have any blog to display right now.</p>

@@ -13,10 +13,6 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
-    snippet: {
-      type: String,
-      required: true,
-    },
     markdown: {
       type: String,
       required: true,
