@@ -5,40 +5,46 @@
     <%-include("./partials/navbar.ejs") %>
 
     <section class="px-4 py-8 lg:py-16 flex-1">
-      <div class="text-center mx-auto max-w-3xl">
-        <div class="flex flex-col items-center space-y-6">
-          <h1 class="text-lg md:text-xl lg:text-4xl font-bold text-center">
-            About Me
-          </h1>
-          <div
-            class="rounded-full h-56 w-56 mx-auto border-2 border-gray-300 overflow-hidden"
-          >
-            <img class="" src="/img/profile pic.jpg" alt="Profile picture" />
+      <div class="max-w-screen-lg mx-auto pb-12">
+        <h1 class="text-lg md:text-xl lg:text-4xl font-bold text-center mb-16">
+          About Me
+        </h1>
+        <div class="flex justify-between items-center">
+          <div class="rounded-xl overflow-hidden w-[40%]">
+            <img class="" src="/img/profile-pic.jpg" alt="Profile picture" />
           </div>
-          <p class="">
-            Hi there! My name is Amit and I am a blogger and content creator. I
-            am passionate about sharing my experiences and insights with the
-            world, and connecting with like-minded people. On my blog, you will
-            find a mix of personal stories, useful tips, and interesting
-            insights related to Web Developement. I hope you enjoy reading my
-            content as much as I enjoy creating it!
-          </p>
-          <div class="flex space-x-6">
-            <a href="#" class="social-link">
-              <i
-                class="fab fa-instagram text-3xl hover:text-[#13E4E4] transition-all"
-              ></i>
+          <div class="w-[50%] space-y-9">
+            <p class="text-lg">
+              Hi there! My name is Amit and I am a blogger and content creator.
+              I am passionate about sharing my experiences and insights with the
+              world, and connecting with like-minded people. On my blog, you
+              will find a mix of personal stories, useful tips, and interesting
+              insights related to Web Developement. I hope you enjoy reading my
+              content as much as I enjoy creating it!
+            </p>
+            <a
+              href="/blogs"
+              class="border-none bg-[#007DFE] inline-block animate-bounce text-white px-6 py-2 rounded-md hover:bg-sky-500 transition-all"
+            >
+              Read now!
             </a>
-            <a href="#" class="social-link">
-              <i
-                class="fab fa-twitter text-3xl hover:text-[#13E4E4] transition-all"
-              ></i>
-            </a>
-            <a href="#" class="social-link">
-              <i
-                class="fab fa-github text-3xl hover:text-[#13E4E4] transition-all"
-              ></i>
-            </a>
+            <div class="flex space-x-6 mt-6">
+              <a href="#" class="social-link">
+                <i
+                  class="fab fa-instagram text-3xl hover:text-[#13E4E4] transition-all"
+                ></i>
+              </a>
+              <a href="#" class="social-link">
+                <i
+                  class="fab fa-twitter text-3xl hover:text-[#13E4E4] transition-all"
+                ></i>
+              </a>
+              <a href="#" class="social-link">
+                <i
+                  class="fab fa-github text-3xl hover:text-[#13E4E4] transition-all"
+                ></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>

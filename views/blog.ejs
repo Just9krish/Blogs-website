@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
   <%-include("./partials/head.ejs") %>
+  <style>
+    .back:hover .back-icon {
+      transform: translateX(-0.3rem);
+    }
+  </style>
   <body class="min-h-screen flex flex-col">
     <%-include("./partials/navbar.ejs") %>
     <section class="px-4 py-8 lg:py-16 flex-1">
-      <h1><%= blog.title %></h1>
-      <div>
-        <a href="/blogs">All Blogs</a>
-        <a href="/blogs/edit/<%= blog.id %>">Edit</a>
+      <div class="max-w-screen-lg mx-auto">
+        <a
+          href="/blogs"
+          class="bg-[#007DFE] text-lg rounded-md text-white px-4 py-1.5 back"
+        >
+          <i
+            class="fas fa-chevron-left mr-1 ease-in-out duration-300 back-icon"
+          ></i
+          >Back</a
+        >
+        <h1 class="text-4xl text-center font-bold pb-8"><%= blog.title %></h1>
+        <div>
+          <!-- <a href="/blogs/edit/<%= blog.id %>">Edit</a> -->
+        </div>
+        <div><%- blog.sanitizedHtml %></div>
       </div>
-      <div><%- blog.sanitizedHtml %></div>
     </section>
     <%-include("./partials/footer.ejs") %>
   </body>
