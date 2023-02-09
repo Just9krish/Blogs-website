@@ -70,7 +70,7 @@ const blog_edit = async (req, res) => {
   const id = req.params.id;
 
   const blog = await Blog.findById(id);
-  res.render("editblog", { blog: blog, title: "Edit blog" });
+  res.status(200).render("editblog", { blog: blog, title: "Edit blog" });
 };
 
 module.exports = {

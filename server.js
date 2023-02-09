@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const methodOverriden = require("method-override");
 const blogRouter = require("./routes/blogs.routes");
+const adminrouter = require("./routes/admin.routes");
 const Blog = require("./models/blog.model");
 
 const app = express();
@@ -45,3 +46,9 @@ app.use("/blogs", blogRouter);
 app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
+
+app.get("/login", (req, res) => {
+  res.render("login", { title: "Admin Login" });
+});
+
+app.use("/admin", adminrouter);
