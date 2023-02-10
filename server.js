@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const logger = require("morgan");
 const methodOverriden = require("method-override");
 const blogRouter = require("./routes/blogs.routes");
 const adminrouter = require("./routes/admin.routes");
@@ -20,6 +21,7 @@ const port = process.env.PORT;
 // setting ejs
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(logger("dev"));
 
 // setting ejs as template engine
 app.set("view engine", "ejs");

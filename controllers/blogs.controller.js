@@ -11,7 +11,6 @@ const blog_index = (req, res) => {
 };
 
 const blog_create_get = (req, res) => {
-  console.log("creatte");
   res.render("createblog", { title: "Create Blog", blog: new Blog() });
 };
 
@@ -51,7 +50,6 @@ const blog_details = async (req, res) => {
   const slug = req.params.slug;
 
   try {
-    console.log("Ddd");
     const blog = await Blog.findOne({ slug: slug }); // find return array so use findOne
     res.render("blog", { blog: blog, title: "Blog Details" });
   } catch (error) {

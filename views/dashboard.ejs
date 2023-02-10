@@ -11,12 +11,14 @@
         </h1>
 
         <div class="space-y-6 px-2 py-7 max-w-[900px] mx-auto">
-          <a
-            class="bg-green-600 text-white px-4 py-1.5 rounded-md hover:bg-green-400 transition-all inline-flex items-center"
-            href="/blogs/create"
-          >
-            Add New
-          </a>
+          <form action="/blogs/create?_method=GET" method="post">
+            <button
+              class="bg-green-600 text-white px-4 py-1.5 rounded-md hover:bg-green-400 transition-all inline-flex items-center"
+              id="newblog"
+            >
+              Add New
+            </button>
+          </form>
           <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
           <div
             class="border border-gray-400 shadow-lg p-6 rounded-md flex items-center justify-between"
@@ -76,23 +78,26 @@
       const token = "<%= jwt %>";
       localStorage.setItem("jwtToken", token);
 
-      //   const createBlog = document.getElementById("newblog");
+      // const createBlog = document.getElementById("newblog");
 
-      //   createBlog.addEventListener("click", sendRequest);
+      // createBlog.addEventListener("click", sendRequest);
 
-      async function sendRequest() {
-        const response = await fetch("http://localhost:3000/blogs/create", {
+      const logout = document.getElementById("logout");
+
+      logout.addEventListener("click", () => {
+        localStorage.removeItem("jwtToken");
+        window.location = "/";
+      });
+
+      function sendRequest() {
+        console.log("Dd");
+        fetch("http://localhost:3000/blogs/create", {
           method: "GET",
           headers: {
             Authorization: "Bearer " + localStorage.getItem("jwtToken"),
           },
-        });
-        // console.log(response);
-        if (response.ok) {
-          window.location = "http://localhost:3000/blogs/create";
-        } else {
-          console.log(new Error("error"));
-        }
+          async: false,
+        }).then((res) => console.log(res));
       }
     </script>
   </body>

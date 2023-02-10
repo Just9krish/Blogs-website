@@ -84,12 +84,10 @@ const verifyToken = async (req, res, next) => {
   }
 
   const token = authorization.split(" ")[1];
-  console.log(token);
 
   try {
     const decoded = jwt.verify(token, secret);
     req.user = decoded;
-    console.log("going for next");
     return next();
   } catch (error) {
     res.status(401).json({ error: error.message });
