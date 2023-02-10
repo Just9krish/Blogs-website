@@ -1,4 +1,5 @@
 const Admin = require("../models/admin.blog");
+const Blog = require("../models/blog.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -27,9 +28,15 @@ const adminAuth = async (req, res) => {
       expiresIn: expireTime,
     });
 
+    let blogs = await Blog.find().sort({ createdAt: -1 });
+
+    if (!blogs) {
+      blogs = [];
+    }
+
     // res.status(200).json({ success: true, jwt: token });
 
-    res.render("dashboard", { title: "Dashboard", jwt: token });
+    res.render("dashboard", { title: "Dashboard", jwt: token, blogs: blogs });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -49,7 +56,6 @@ const createAdmin = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     // console.log(salt);
     const hashedPassword = await bcrypt.hash(password, salt);
-    console.log(hashedPassword);
 
     const admin = await Admin.create({
       email,
@@ -70,7 +76,28 @@ const createAdmin = async (req, res) => {
   }
 };
 
+const verifyToken = async (req, res, next) => {
+  const { authorization } = req.headers;
+
+  if (!authorization) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  const token = authorization.split(" ")[1];
+  console.log(token);
+
+  try {
+    const decoded = jwt.verify(token, secret);
+    req.user = decoded;
+    console.log("going for next");
+    return next();
+  } catch (error) {
+    res.status(401).json({ error: error.message });
+  }
+};
+
 module.exports = {
   adminAuth,
   createAdmin,
+  verifyToken,
 };

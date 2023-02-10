@@ -1,10 +1,99 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <h1>Admin Dashboard</h1>
+  <%-include("./partials/head.ejs") %>
+  <body class="min-h-screen flex flex-col">
+    <%-include("./partials/navbar.ejs") %>
+
+    <section class="px-4 py-8 lg:py-16 flex-1">
+      <div class="max-w-screen-lg mx-auto">
+        <h1 class="text-lg md:text-xl lg:text-4xl font-bold text-center mb-9">
+          Admin Dashboard
+        </h1>
+
+        <div class="space-y-6 px-2 py-7 max-w-[900px] mx-auto">
+          <a
+            class="bg-green-600 text-white px-4 py-1.5 rounded-md hover:bg-green-400 transition-all inline-flex items-center"
+            href="/blogs/create"
+          >
+            Add New
+          </a>
+          <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+          <div
+            class="border border-gray-400 shadow-lg p-6 rounded-md flex items-center justify-between"
+          >
+            <div class="w-[45%]">
+              <div class="mb-2">
+                <h3
+                  class="font-bold m-0 text-base w-full break-words text-[#13E4E4] md:text-lg lg:text-2xl"
+                >
+                  <%= blog.title %>
+                </h3>
+                <span class="text-gray-500">
+                  <i class="far fa-calendar text-md"> </i>
+                  <%= blog.createdAt.toLocaleDateString() %>
+                </span>
+              </div>
+              <p class="font-light text-sm md:text-base lg:text-md">
+                <%= blog.markdown.split(" ").slice(0, 40).join(" ") %>....<a
+                  href="/blogs/<%= blog.slug %>"
+                  class="text-red-700 cursor-pointer hover:text-red-500"
+                  >continue reading</a
+                >
+              </p>
+              <div class="flex space-x-3 mt-4">
+                <a
+                  class="text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 lg:text-md"
+                  href="/blogs/<%= blog.slug %>"
+                  class="read-more"
+                  >Read More</a
+                >
+                <form
+                  action="/blogs/<%= blog.id%>?_method=DELETE"
+                  method="POST"
+                >
+                  <button
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 lg:text-md"
+                    type="submit"
+                  >
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="rounded-md overflow-hidden w-[45%]">
+              <img src="<%= blog.cover %>" />
+            </div>
+          </div>
+          <% }) %> <% } else { %>
+          <p>There is no blog to display</p>
+          <% } %>
+        </div>
+      </div>
+    </section>
+    <%-include("./partials/footer.ejs") %>
+
     <script>
       const token = "<%= jwt %>";
       localStorage.setItem("jwtToken", token);
+
+      //   const createBlog = document.getElementById("newblog");
+
+      //   createBlog.addEventListener("click", sendRequest);
+
+      async function sendRequest() {
+        const response = await fetch("http://localhost:3000/blogs/create", {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+          },
+        });
+        // console.log(response);
+        if (response.ok) {
+          window.location = "http://localhost:3000/blogs/create";
+        } else {
+          console.log(new Error("error"));
+        }
+      }
     </script>
   </body>
 </html>
