@@ -16,7 +16,7 @@ app.use(methodOverriden("_method"));
 
 // database url
 const dbUrl = process.env.MONGODBURL;
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // setting ejs
 app.use(bodyParser.urlencoded({ extended: false }));
